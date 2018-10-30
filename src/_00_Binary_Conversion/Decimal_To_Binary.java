@@ -1,35 +1,30 @@
 package _00_Binary_Conversion;
 
+import javax.swing.JOptionPane;
+
 public class Decimal_To_Binary {
 	public static void main(String[] args) {
-		//Converting a decimal number to binary is a little trickier.
-		
-		//EXAMPLE: Convert 43 to binary
-		
-		/*
-		 * Step 1: Start with one and add a digit the left that is double the value of the previous number.
-		 *         Stop when you've passed the target number        
-		 *         eg. 43
-		 *         	64	32	16	8	4	2	1
-		 *        
-		 *	Step 2: Remove the left most value (the one that is higher than the target). 
-		 *			eg. 43
-		 *         	32	16	8	4	2	1
-		 *         
-		 *  Step 3: Find the combination of values that add up to the target number.
-		 *  		eg. 43
-		 *         	32	16	8	4	2	1
-		 *          43 = 32 + 8 + 2 + 1
-		 *         
-		 *  Step 4: Every matching number in the list is a 1, and non-matching is a 0.
-		 *  		eg. 43
-		 *         	32	16	8	4	2	1
-		 *          43 = 32 + 8 + 2 + 1
-		 *         
-		 *          1    0   1   0   1   1
-		 *          32	16	 8	 4	 2	 1
-		 *         
-		 *         43 in decimal is 101011 in binary!
-		 */
+		String decimal = JOptionPane.showInputDialog("Enter a decimal value.");
+		System.out.println(returnBinary(decimal));
+	}
+
+	static String returnBinary(String dec) {
+		int[] binaryNum = new int[1000];
+		int n = Integer.parseInt(dec);
+		int i = 0;
+		while (n > 0) {
+			binaryNum[i] = n % 2;
+			n = n / 2;
+			i++;
+		}
+		String[] output = new String[1000];
+		for (int m = 0; m < binaryNum.length; m++) {
+			output[m] = binaryNum[m] + "";
+		}
+		String p = "";
+		for (int j = i - 1; j >= 0; j--) {
+			p += output[j];
+		}
+		return p;
 	}
 }
